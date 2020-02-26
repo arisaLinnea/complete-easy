@@ -55,7 +55,9 @@ New lets create a repository on GitHub.
 13. Go to GitHub in the browser and check that your new files are in the repo.
 
 
-
+# Firebase Hosting #
+# Travis CI #
+# Firebase Database #
 
 
 ### `npm run build`
