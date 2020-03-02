@@ -55,20 +55,65 @@ New lets create a repository on GitHub.
 13. Go to GitHub in the browser and check that your new files are in the repo.
 
 
-# Firebase Hosting #
+# Firebase Hosting and Firebase Storage#
+For this project I want to use Firebase to host my project and also use some storage for data. Firebase have several ways to store data. I will choose **Storage**. You can read more here firebase.google.com/docs/database/rtdb-vs-firestore if you are unsure which will work best for you.
+1. Go to Firebase webpage (firebase.google.com) , login/create account. Go to the console on the firebase webpage.
+2. Add Project
+3. Set a name
+4. Enable Google Analytics, if you want to.
+5. When project is created, go to **Storage** in the left menu.
+   - Info about importance of defining rules. However nothing we will do in this step.
+   - Choose a location. This can't be changed later on, so choose visely. 
+   - Press **Done** and wait.
+6. Go to **Hosting** on the left meny. And press 'get started'.
+7. As it says on the set up, we need to install Firebase CLI. (I didn't check the checkbox for Firebase JS SDK).
+   - Go to the terminal and your project folder.
+   - Enter `npm install -g firebase-tools`  (The -g will install it globally, so you have it for other projects. But can always run the command again then, to insure that you have the latest version).
+8. Lets go to the next step of setting up Firebase hosting on the webpage.
+9. From terminal, enter `firebase login` in the root of your project.
+   - Answer question according to own preferences.
+   - Login in using your google account credentials and let Firebase access your account.
+   - Close window / tab
+   - In terminal you should see a success message.
+10. From terminal, enter `firebase init`   (from project root)
+   - We want **hosting**, so select that one.
+   - I will also choose **Storage**. 
+   - Confirm by pressing enter.
+   - We will choose 'Existing project'
+   - Choose the name of the project we recently created on firebase website.
+   - I will choose **build** as my public directory
+   - **Yes** For single-page app
+   - **N** for overwrite index.html
+   - I choose **storage.rules** for the storage rules
+   - Done
+11. `firebase deploy`
+12. If you go to [name of your firebase project].web.app you will probably not see anything. That's because we har missing some things in our index.html (that we didn't want to overwrite).
+    - Go to Project Overview on firebase website.
+    - At the bottom of **General**, Use to add a app. (of type web). 
+    - Choose a nickname
+    - Register app.
+    - Copy code segment
+    - Under **general**, you should now be able to see the app. Under **Linked Firebae Hosting site**, choose the one we created above.
+    - Open your index.html file.
+    - Add the copied content just above `<div id="root"></div>` in the body tag.
+    - `npm run build` in the terminal
+    - `firebase deploy` in the terminal
+13. Can now see it on [name of your firebase project].web.app
+
 # Travis CI #
-# Firebase Database #
+We have now deployed to Firebase and can see the react site on the url what Firebase Hosting has given us. For every change we do we need to run the `firebase deploy` command and the new stuff will be shown. However, we use GitHub and might have several contributers that change to code. We want the version that's the latest in GitHub to be the one that is shown on our hosting url. But How do we invoke a firebase deploy from GitHub?
+I was planing on using Travis. Travis is a Continuous Integration service. Since this is open source code, I can use travis for free.
+1. Go to the root of your project and create a file called **.travis.yml**
+2. Look at the .travis.yml file here on the github repo, but basically it will have the following:
+   - `language: node_js`
+   - `node_js:`   version
+3. 
 
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Go to the Travis webpage (travis-ci.org). 
+2. I signed in with by google account.
+3. 
+# More Firebase Storage #
 
 
 ### Making a Progressive Web App
