@@ -76,16 +76,16 @@ For this project I want to use Firebase to host my project and also use some sto
    - Close window / tab
    - In terminal you should see a success message.
 10. From terminal, enter `firebase init`   (from project root)
-   - We want **hosting**, so select that one.
-   - I will also choose **Storage**. 
-   - Confirm by pressing enter.
-   - We will choose 'Existing project'
-   - Choose the name of the project we recently created on firebase website.
-   - I will choose **build** as my public directory
-   - **Yes** For single-page app
-   - **N** for overwrite index.html
-   - I choose **storage.rules** for the storage rules
-   - Done
+    - We want **hosting**, so select that one.
+    - I will also choose **Storage**. 
+    - Confirm by pressing enter.
+    - We will choose 'Existing project'
+    - Choose the name of the project we recently created on firebase website.
+    - I will choose **build** as my public directory
+    - **Yes** For single-page app
+    - **N** for overwrite index.html
+    - I choose **storage.rules** for the storage rules
+    - Done
 11. `firebase deploy`
 12. If you go to [name of your firebase project].web.app you will probably not see anything. That's because we har missing some things in our index.html (that we didn't want to overwrite).
     - Go to Project Overview on firebase website.
@@ -107,12 +107,26 @@ I was planing on using Travis. Travis is a Continuous Integration service. Since
 2. Look at the .travis.yml file here on the github repo, but basically it will have the following:
    - `language: node_js`
    - `node_js:`   version
-3. 
-
-
-Go to the Travis webpage (travis-ci.org). 
-2. I signed in with by google account.
-3. 
+3. To set the $FIREBASE_TOKEN
+   - Go to the terminal
+   - `firebase login:ci`
+   - Login in and give access to firebase
+   - Close browser window / tab
+   - In terminal, copy the token that is shown.
+   - Go to the Travis webpage (travis-ci.org). 
+   - I signed in with by google account.
+   - On your account page you should be able to see all your github repos. 
+     - Press the one you have been working on for this project.
+     - Choose to active it.
+   - On your repo page, choose settings (Might be hiden under the hamburger menu.
+   - Under environment varibles
+   - Add a new Variable named **FIREBASE_TOKEN** and with the value of the copied token.
+4. Now everything is finished in travis, lets test it.
+5. Open your project in a editor, and make a change in App.js. (For example change the text inside the <p> to 'Hello Firebase and Travis'.)
+6. Go to the terminal and write `git add .`, `git commit -m "changed text"` and `git push`.
+7. Now you should see logs in travis.
+8. Check the firebase url and see if it's been updated with the new text.
+   
 # More Firebase Storage #
 
 
