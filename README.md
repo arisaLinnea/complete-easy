@@ -50,7 +50,7 @@ New lets create a repository on GitHub.
 8. `git commit -m "First commit"`
 9. Go to the repository that you earlier created. And press "Clone or download". Copy the link for ssh.
 10. Go to the terminal and write `git remote add origin [ssh link that you copied]`   
-11. To be sure, write `git remove -v` to see that it's linked to the right repo.
+11. To be sure, write `git remote -v` to see that it's linked to the right repo.
 12. `git push -u origin master`
 13. Go to GitHub in the browser and check that your new files are in the repo.
 
